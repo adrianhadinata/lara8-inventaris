@@ -98,9 +98,7 @@
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                    <img src="" alt="">
-                </div>
+                <div id="reader"></div>
             </div>
         </div>
     </div>
@@ -114,12 +112,21 @@
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                    <img src="" alt="">
-                </div>
+                
             </div>
         </div>
     </div>
 </div>
+
+<script src="js/html5-qrcode.min.js" type="text/javascript"></script>
+<script>
+    function onScanSuccess(decodedText, decodedResult) {
+        // Handle on success condition with the decoded text or result.
+        console.log(`Scan result: ${decodedText}`, decodedResult);
+    }
+
+    var html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250 });
+    html5QrcodeScanner.render(onScanSuccess);
+</script>
 
 @endsection
