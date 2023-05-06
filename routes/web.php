@@ -21,6 +21,10 @@ Route::get('/listBarang', function () {
     return view('barang/list');
 });
 
+Route::get('/listSupplier', function () {
+    return view('supplier/list');
+});
+
 Route::get('/about', function () {
     return view('welcome');
 });
