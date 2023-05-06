@@ -29,6 +29,18 @@ Route::get('/listKategori', function () {
     return view('kategori/list');
 });
 
+Route::get('/listSatuan', function () {
+    return view('satuan/list');
+});
+
+Route::get('/inputMasuk', function () {
+    return view('transaksi/masuk/input');
+});
+
+Route::get('/inputKeluar', function () {
+    return view('transaksi/keluar/input');
+});
+
 Route::get('/about', function () {
     return view('welcome');
 });

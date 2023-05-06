@@ -69,7 +69,7 @@
                         <a class="collapse-item" href="/listBarang">Barang</a>
                         <a class="collapse-item" href="/listSupplier">Supplier</a>
                         <a class="collapse-item" href="/listKategori">Kategori</a>
-                        <a class="collapse-item" href="#">Satuan</a>
+                        <a class="collapse-item" href="/listSatuan">Satuan</a>
                     </div>
                 </div>
             </li>
@@ -83,8 +83,8 @@
               </a>
               <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="#">Barang Masuk</a>
-                    <a class="collapse-item" href="#">Barang Keluar</a>
+                    <a class="collapse-item" href="/inputMasuk">Barang Masuk</a>
+                    <a class="collapse-item" href="/inputKeluar">Barang Keluar</a>
                   </div>
               </div>
             </li>
