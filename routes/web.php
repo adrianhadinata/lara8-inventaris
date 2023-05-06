@@ -41,6 +41,14 @@ Route::get('/inputKeluar', function () {
     return view('transaksi/keluar/input');
 });
 
+Route::get('/reportMasuk', function () {
+    return view('laporan/masuk/report');
+});
+
+Route::get('/reportKeluar', function () {
+    return view('laporan/keluar/report');
+});
+
 Route::get('/about', function () {
     return view('welcome');
 });

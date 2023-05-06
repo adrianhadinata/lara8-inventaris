@@ -98,8 +98,8 @@
               </a>
               <div id="reportCollapse" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="#">Barang Masuk</a>
-                    <a class="collapse-item" href="#">Barang Keluar</a>
+                    <a class="collapse-item" href="/reportMasuk">Barang Masuk</a>
+                    <a class="collapse-item" href="/reportKeluar">Barang Keluar</a>
                   </div>
               </div>
             </li>
