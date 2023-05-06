@@ -68,7 +68,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/listBarang">Barang</a>
                         <a class="collapse-item" href="/listSupplier">Supplier</a>
-                        <a class="collapse-item" href="#">Kategori</a>
+                        <a class="collapse-item" href="/listKategori">Kategori</a>
                         <a class="collapse-item" href="#">Satuan</a>
                     </div>
                 </div>
@@ -193,7 +193,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; Kecamatan Gubug</span>
                     </div>
                 </div>
             </footer>

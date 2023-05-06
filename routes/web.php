@@ -25,6 +25,10 @@ Route::get('/listSupplier', function () {
     return view('supplier/list');
 });
 
+Route::get('/listKategori', function () {
+    return view('kategori/list');
+});
+
 Route::get('/about', function () {
     return view('welcome');
 });
