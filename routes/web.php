@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('login');
+});
+
+Route::get('/home', function () {
     return view('home');
 });
 
@@ -47,6 +51,10 @@ Route::get('/reportMasuk', function () {
 
 Route::get('/reportKeluar', function () {
     return view('laporan/keluar/report');
+});
+
+Route::get('/listUser', function () {
+    return view('user/list');
 });
 
 Route::get('/about', function () {

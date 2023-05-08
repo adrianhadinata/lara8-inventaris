@@ -112,7 +112,20 @@
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                
+                <div class="row">
+                    <div class="col-12">
+                        <label for="">Nama Barang:</label>
+                        <p id="penampungNama">ABC</p>
+                    </div>
+                    <div class="col-12">
+                        <label for="">Stok Barang:</label>
+                        <p id="penampungStok">0</p>
+                    </div>
+                    <div class="col-12">
+                        <label for="">Lokasi Barang:</label>
+                        <p id="penampungLokasi">Gudang</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

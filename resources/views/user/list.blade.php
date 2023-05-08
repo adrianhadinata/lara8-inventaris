@@ -6,8 +6,8 @@
     <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Data Kategori</h6>
-            <button class="btn btn-info" data-toggle="modal" data-target="#modalTambahKategori">Tambah Kategori +</button>
+            <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
+            <button class="btn btn-info" data-toggle="modal" data-target="#modalTambahUser">Tambah User +</button>
         </div>
         <!-- Card Body -->
         <div class="card-body">
@@ -15,7 +15,9 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Nama Kategori</th>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Username</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -26,12 +28,12 @@
     </div>
 </div>
 
-<!-- Modal Tambah Kategori-->
-<div class="modal fade" id="modalTambahKategori" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal Tambah User-->
+<div class="modal fade" id="modalTambahUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Tambah Kategori</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -39,8 +41,20 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-12">
-                <label for="namaKategori">Nama Kategori</label>
-                <input type="text" class="form-control" name="namaKategori">
+                <label for="kodeQR">Kode QR:</label>
+                <input type="text" class="form-control" name="kodeQR">
+            </div>
+            <div class="col-12">
+                <label for="namaUser">Nama User</label>
+                <input type="text" class="form-control" name="namaUser">
+            </div>
+            <div class="col-12">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username">
+            </div>
+            <div class="col-12">
+                <label for="password">Password</label>
+                <input type="text" class="form-control" name="password">
             </div>
           </div>
         </div>

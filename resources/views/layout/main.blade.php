@@ -113,7 +113,7 @@
               </a>
               <div id="userCollapse" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="#">User</a>
+                    <a class="collapse-item" href="listUser">User</a>
                   </div>
               </div>
             </li>
