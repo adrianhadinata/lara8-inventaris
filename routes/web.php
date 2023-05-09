@@ -1,6 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\SatuanController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\LaporanMasukController;
+use App\Http\Controllers\LaporanKeluarController;
+use App\Http\Controllers\TransaksiMasukController;
+use App\Http\Controllers\TransaksiKeluarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,49 +24,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
-
-Route::get('/home', function () {
-    return view('home');
-});
-
-Route::get('/listBarang', function () {
-    return view('barang/list');
-});
-
-Route::get('/listSupplier', function () {
-    return view('supplier/list');
-});
-
-Route::get('/listKategori', function () {
-    return view('kategori/list');
-});
-
-Route::get('/listSatuan', function () {
-    return view('satuan/list');
-});
-
-Route::get('/inputMasuk', function () {
-    return view('transaksi/masuk/input');
-});
-
-Route::get('/inputKeluar', function () {
-    return view('transaksi/keluar/input');
-});
-
-Route::get('/reportMasuk', function () {
-    return view('laporan/masuk/report');
-});
-
-Route::get('/reportKeluar', function () {
-    return view('laporan/keluar/report');
-});
-
-Route::get('/listUser', function () {
-    return view('user/list');
-});
+Route::get('/', [AuthController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index']);
+Route::get('/listBarang', [BarangController::class, 'index']);
+Route::get('/listSupplier', [SupplierController::class, 'index']);
+Route::get('/listKategori', [KategoriController::class, 'index']);
+Route::get('/listSatuan', [SatuanController::class, 'index']);
+Route::get('/inputMasuk', [TransaksiMasukController::class, 'index']);
+Route::get('/inputKeluar', [TransaksiKeluarController::class, 'index']);
+Route::get('/reportMasuk', [LaporanMasukController::class, 'index']);
+Route::get('/reportKeluar', [LaporanKeluarController::class, 'index']);
+Route::get('/listUser', [UserController::class, 'index']);
 
 Route::get('/about', function () {
     return view('welcome');
