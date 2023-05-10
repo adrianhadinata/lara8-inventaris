@@ -31,6 +31,12 @@
 
             <div class="col-xl-6 col-lg-6 col-md-6">
 
+                @if(session()->has('loginError'))
+                    <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                        {{ session('loginError') }}
+                    </div>
+                @endif
+
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
@@ -40,19 +46,30 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="p-5">
-                                    <form class="user">
+                                    <form class="user" action="/login" method="POST">
+                                        @csrf
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter username...">
+                                            <input type="text" class="form-control form-control-user @error('username') is-invalid @enderror"
+                                                id="username" name="username"
+                                                placeholder="Enter username..." value="{{old('username')}}" autofocus>
+                                            @error('username')
+                                                <div class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror"
+                                                id="password" name="password" placeholder="Enter password...">
+                                            @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{$message}}
+                                                </div>
+                                            @enderror
                                         </div>
-                                        <a href="/home" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
-                                        </a>
+                                        </button>
                                     </form>
                                 </div>
                             </div>

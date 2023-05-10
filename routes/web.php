@@ -24,17 +24,20 @@ use App\Http\Controllers\TransaksiKeluarController;
 |
 */
 
-Route::get('/', [AuthController::class, 'index']);
-Route::get('/home', [HomeController::class, 'index']);
-Route::get('/listBarang', [BarangController::class, 'index']);
-Route::get('/listSupplier', [SupplierController::class, 'index']);
-Route::get('/listKategori', [KategoriController::class, 'index']);
-Route::get('/listSatuan', [SatuanController::class, 'index']);
-Route::get('/inputMasuk', [TransaksiMasukController::class, 'index']);
-Route::get('/inputKeluar', [TransaksiKeluarController::class, 'index']);
-Route::get('/reportMasuk', [LaporanMasukController::class, 'index']);
-Route::get('/reportKeluar', [LaporanKeluarController::class, 'index']);
-Route::get('/listUser', [UserController::class, 'index']);
+Route::get('/', [AuthController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'authenticate']);
+Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
+Route::get('/listBarang', [BarangController::class, 'index'])->middleware('auth');
+Route::get('/listSupplier', [SupplierController::class, 'index'])->middleware('auth');
+Route::get('/listKategori', [KategoriController::class, 'index'])->middleware('auth');
+Route::get('/listSatuan', [SatuanController::class, 'index'])->middleware('auth');
+Route::get('/inputMasuk', [TransaksiMasukController::class, 'index'])->middleware('auth');
+Route::get('/inputKeluar', [TransaksiKeluarController::class, 'index'])->middleware('auth');
+Route::get('/reportMasuk', [LaporanMasukController::class, 'index'])->middleware('auth');
+Route::get('/reportKeluar', [LaporanKeluarController::class, 'index'])->middleware('auth');
+Route::get('/listUser', [UserController::class, 'index'])->middleware('auth');
 
 Route::get('/about', function () {
     return view('welcome');
