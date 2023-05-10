@@ -56,30 +56,33 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-12">
-                <label for="namaSupplier">Nama Supplier</label>
-                <input type="text" class="form-control" name="namaSupplier">
+        <form action="/supplier/tambah" method="POST">
+            @csrf
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="namaSupplier">Nama Supplier</label>
+                        <input type="text" class="form-control" name="namaSupplier">
+                    </div>
+                    <div class="col-12">
+                        <label for="emailSupplier">Email Supplier</label>
+                        <input type="text" class="form-control" name="emailSupplier">
+                    </div>
+                    <div class="col-12">
+                        <label for="teleponSupplier">Telepon Supplier</label>
+                        <input type="text" class="form-control" name="teleponSupplier">
+                    </div>
+                    <div class="col-12">
+                        <label for="lokasiSupplier">Alamat Supplier</label>
+                        <input type="text" class="form-control" name="lokasiSupplier">
+                    </div>
+                </div>
             </div>
-            <div class="col-12">
-                <label for="emailSupplier">Email Supplier</label>
-                <input type="text" class="form-control" name="emailSupplier">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
-            <div class="col-12">
-                <label for="teleponSupplier">Telepon Supplier</label>
-                <input type="text" class="form-control" name="teleponSupplier">
-            </div>
-            <div class="col-12">
-                <label for="lokasiSupplier">Alamat Supplier</label>
-                <input type="text" class="form-control" name="lokasiSupplier">
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+        </form>
       </div>
     </div>
   </div>

@@ -30,47 +30,50 @@
         </div>
         <!-- Card Body -->
         <div class="card-body">
-            <div class="row">
-                <div class="col-12">
-                    <label for="kodeTransaksi">Kode Transaksi</label>
-                    <input type="text" name="kodeTransaksi" id="kodeTransaksi" class="form-control" readonly>
+            <form action="/barang/masuk/tambah" method="POST">
+                @csrf
+                <div class="row">
+                    <div class="col-12">
+                        <label for="kodeTransaksi">Kode Transaksi</label>
+                        <input type="text" name="kodeTransaksi" id="kodeTransaksi" class="form-control" readonly>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <label for="namaSupplier">Nama Supplier</label>
+                        <select name="namaSupplier" id="namaSupplier" class="form-control">
+                            <option value="">Pilih supplier</option>
+                        </select>
+                    </div>
+                    <div class="col-8 mt-2">
+                        <label for="namaBarang">Nama Barang</label>
+                        <select name="namaBarang" id="namaBarang" class="form-control">
+                            <option value="">Pilih barang</option>
+                        </select>
+                    </div>
+                    <div class="col-4 mt-2">
+                        <label for="tanggalMasuk">Tanggal Masuk</label>
+                        <input type="date" name="tanggalMasuk" id="tanggalMasuk" class="form-control">
+                    </div>
+                    <div class="col-4 mt-2">
+                        <label for="jumlahBarang">Jumlah Barang</label>
+                        <input type="text" name="jumlahBarang" id="jumlahBarang" placeholder="Masukan jumlah..." class="form-control">
+                    </div>
+                    <div class="col-4 mt-2">
+                        <label for="stokBarang">Stok Barang</label>
+                        <input type="text" name="stokBarang" id="stokBarang" class="form-control" readonly>
+                    </div>
+                    <div class="col-4 mt-2">
+                        <label for="totalBarang">Total Barang</label>
+                        <input type="text" name="totalBarang" id="totalBarang" class="form-control" readonly>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <label for="catatanMasuk">Catatan</label>
+                        <textarea class="form-control" name="catatanMasuk" id="catatanMasuk" id="catatanMasuk" placeholder="Masukan catatan..." rows="3"></textarea>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button type="button" class="btn btn-primary" style="display: block;width: 100%;">Submit</button>
+                    </div>
                 </div>
-                <div class="col-12 mt-2">
-                    <label for="namaSupplier">Nama Supplier</label>
-                    <select name="namaSupplier" id="namaSupplier" class="form-control">
-                        <option value="">Pilih supplier</option>
-                    </select>
-                </div>
-                <div class="col-8 mt-2">
-                    <label for="namaBarang">Nama Barang</label>
-                    <select name="namaBarang" id="namaBarang" class="form-control">
-                        <option value="">Pilih barang</option>
-                    </select>
-                </div>
-                <div class="col-4 mt-2">
-                    <label for="tanggalMasuk">Tanggal Masuk</label>
-                    <input type="date" name="tanggalMasuk" id="tanggalMasuk" class="form-control">
-                </div>
-                <div class="col-4 mt-2">
-                    <label for="jumlahBarang">Jumlah Barang</label>
-                    <input type="text" name="jumlahBarang" id="jumlahBarang" placeholder="Masukan jumlah..." class="form-control">
-                </div>
-                <div class="col-4 mt-2">
-                    <label for="stokBarang">Stok Barang</label>
-                    <input type="text" name="stokBarang" id="stokBarang" class="form-control" readonly>
-                </div>
-                <div class="col-4 mt-2">
-                    <label for="totalBarang">Total Barang</label>
-                    <input type="text" name="totalBarang" id="totalBarang" class="form-control" readonly>
-                </div>
-                <div class="col-12 mt-2">
-                    <label for="catatanMasuk">Catatan</label>
-                    <textarea class="form-control" name="catatanMasuk" id="catatanMasuk" id="catatanMasuk" placeholder="Masukan catatan..." rows="3"></textarea>
-                </div>
-                <div class="col-12 mt-3">
-                    <button type="button" class="btn btn-primary" style="display: block;width: 100%;">Submit</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

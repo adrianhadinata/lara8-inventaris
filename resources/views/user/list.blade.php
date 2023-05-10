@@ -38,30 +38,33 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-12">
-                <label for="kodeQR">Kode QR:</label>
-                <input type="text" class="form-control" name="kodeQR">
-            </div>
-            <div class="col-12">
-                <label for="namaUser">Nama User</label>
-                <input type="text" class="form-control" name="namaUser">
-            </div>
-            <div class="col-12">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name="username">
-            </div>
-            <div class="col-12">
-                <label for="password">Password</label>
-                <input type="text" class="form-control" name="password">
+        <form action="/user/tambah" method="POST">
+          @csrf
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                  <label for="kodeQR">Kode QR:</label>
+                  <input type="text" class="form-control" name="kodeQR">
+              </div>
+              <div class="col-12">
+                  <label for="namaUser">Nama User</label>
+                  <input type="text" class="form-control" name="namaUser">
+              </div>
+              <div class="col-12">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" name="username">
+              </div>
+              <div class="col-12">
+                  <label for="password">Password</label>
+                  <input type="text" class="form-control" name="password">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

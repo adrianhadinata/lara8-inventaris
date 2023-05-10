@@ -34,7 +34,7 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**

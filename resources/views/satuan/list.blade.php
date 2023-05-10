@@ -36,18 +36,21 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-12">
-                <label for="namaSatuan">Nama Satuan</label>
-                <input type="text" class="form-control" name="namaSatuan">
+        <form action="/kategori/tambah" method="POST">
+          @csrf
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                  <label for="namaSatuan">Nama Satuan</label>
+                  <input type="text" class="form-control" name="namaSatuan">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
