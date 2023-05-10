@@ -58,42 +58,49 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-12">
-                <label for="kodeQR">Kode QR:</label>
-                <input type="text" class="form-control" name="kodeQR">
-            </div>
-            <div class="col-12">
-                <label for="namaBarang">Nama Barang</label>
-                <input type="text" class="form-control" name="namaBarang">
-            </div>
-            <div class="col-6">
-                <label for="kategoriBarang">Kategori Barang</label>
-                <select class="form-control" name="kategoriBarang" id=""></select>
-            </div>
-            <div class="col-6">
-                <label for="merekBarang"> Merek Barang</label>
-                <input type="text" class="form-control" name="merekBarang">
-            </div>
-            <div class="col-12">
-                <label for="jumlahBarang">Jumlah Barang</label>
-                <input type="text" class="form-control" name="jumlahBarang">
-            </div>
-            <div class="col-12">
-                <label for="satuanBarang">Satuan Barang</label>
-                <select name="satuanBarang" class="form-control" id=""></select>
-            </div>
-            <div class="col-12">
-                <label for="lokasiBarang">Jumlah Barang</label>
-                <input type="text" class="form-control" name="lokasiBarang">
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+        <form action="/barang/tambah" method="POST">
+            @csrf
+            <div class="modal-body">
+                <div class="row">
+                  <div class="col-12">
+                      <label for="kodeQR">Kode QR:</label>
+                      <input type="text" class="form-control" name="kodeQR">
+                  </div>
+                  <div class="col-12">
+                      <label for="namaBarang">Nama Barang</label>
+                      <input type="text" class="form-control" name="namaBarang">
+                  </div>
+                  <div class="col-6">
+                      <label for="kategoriBarang">Kategori Barang</label>
+                      <select class="form-control" name="kategoriBarang" id="">
+                        <option value="1">Pilihan Coba</option>
+                      </select>
+                  </div>
+                  <div class="col-6">
+                      <label for="merekBarang"> Merek Barang</label>
+                      <input type="text" class="form-control" name="merekBarang">
+                  </div>
+                  <div class="col-12">
+                      <label for="jumlahBarang">Jumlah Barang</label>
+                      <input type="text" class="form-control" name="jumlahBarang">
+                  </div>
+                  <div class="col-12">
+                      <label for="satuanBarang">Satuan Barang</label>
+                      <select name="satuanBarang" class="form-control" id="">
+                        <option value="1">Pilihan Coba</option>
+                      </select>
+                  </div>
+                  <div class="col-12">
+                      <label for="lokasiBarang">Jumlah Barang</label>
+                      <input type="text" class="form-control" name="lokasiBarang">
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+              </div> 
+        </form>
       </div>
     </div>
   </div>

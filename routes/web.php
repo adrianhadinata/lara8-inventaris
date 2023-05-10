@@ -29,7 +29,10 @@ Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
+
 Route::get('/listBarang', [BarangController::class, 'index'])->middleware('auth');
+Route::resource('/barang/tambah', BarangController::class)->middleware('auth');
+
 Route::get('/listSupplier', [SupplierController::class, 'index'])->middleware('auth');
 Route::get('/listKategori', [KategoriController::class, 'index'])->middleware('auth');
 Route::get('/listSatuan', [SatuanController::class, 'index'])->middleware('auth');
