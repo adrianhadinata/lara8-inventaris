@@ -41,8 +41,13 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-12">
-                  <label for="namaKategori">Nama Kategori</label>
-                  <input type="text" class="form-control" name="namaKategori">
+                  <label for="nama_kategori">Nama Kategori</label>
+                  <input type="text" class="form-control @error('nama_kategori') is-invalid @enderror"" name="nama_kategori" value="{{ old('nama_kategori') }}">
+                  @error('nama_kategori')
+                    <div class="invalid-feedback">
+                      {{$message}}
+                    </div>
+                  @enderror
               </div>
             </div>
           </div>
@@ -54,6 +59,13 @@
       </div>
     </div>
   </div>
+
+@if(count($errors) > 0)
+  <script>
+    var myModal = new bootstrap.Modal(document.getElementById('modalTambahKategori'));
+    myModal.show();
+  </script>
+@endif
 
 <script src="js/user/list.js" type="text/javascript"></script>
 

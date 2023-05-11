@@ -36,13 +36,18 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="/kategori/tambah" method="POST">
+        <form action="/satuan/tambah" method="POST">
           @csrf
           <div class="modal-body">
             <div class="row">
               <div class="col-12">
-                  <label for="namaSatuan">Nama Satuan</label>
-                  <input type="text" class="form-control" name="namaSatuan">
+                  <label for="nama_satuan">Nama Satuan</label>
+                  <input type="text" value="{{ old('nama_satuan') }}" class="form-control  @error('nama_satuan') is-invalid @enderror" name="nama_satuan">
+                  @error('nama_satuan')
+                    <div class="invalid-feedback">
+                      {{$message}}
+                    </div>
+                  @enderror
               </div>
             </div>
           </div>
@@ -54,6 +59,13 @@
       </div>
     </div>
   </div>
+
+@if(count($errors) > 0)
+  <script>
+    var myModal = new bootstrap.Modal(document.getElementById('modalTambahSatuan'));
+    myModal.show();
+  </script>
+@endif
 
 <script src="js/satuan/list.js" type="text/javascript"></script>
 

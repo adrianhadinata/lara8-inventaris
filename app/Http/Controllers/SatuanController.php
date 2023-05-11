@@ -34,7 +34,9 @@ class SatuanController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $credentials = $request->validate([
+            'nama_satuan' => 'required|unique:satuans|min:3|max:255'
+        ]);
     }
 
     /**

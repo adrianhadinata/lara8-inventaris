@@ -34,7 +34,12 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $credentials = $request->validate([
+            'nama_supplier' => 'required|unique:suppliers|min:3|max:255',
+            'email' => 'required|email:rfc,dns',
+            'telepon' => 'required|min:9|max:15',
+            'alamat' => 'required',
+        ]);
     }
 
     /**

@@ -13,6 +13,8 @@ class KategoriController extends Controller
 
     public function store(Request $request)
     {
-        return $request;
+        $credentials = $request->validate([
+            'nama_kategori' => 'required|unique:kategoris|min:3|max:255'
+        ]);
     }
 }

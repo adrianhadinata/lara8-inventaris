@@ -61,20 +61,40 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-12">
-                        <label for="namaSupplier">Nama Supplier</label>
-                        <input type="text" class="form-control" name="namaSupplier">
+                        <label for="nama_supplier">Nama Supplier</label>
+                        <input type="text" class="form-control @error('nama_supplier') is-invalid @enderror" name="nama_supplier" value="{{ old('nama_supplier') }}">
+                        @error('nama_supplier')
+                            <div        class="invalid-feedback">
+                            {{$message}}
+                            </div>
+                        @enderror
                     </div>
                     <div class="col-12">
-                        <label for="emailSupplier">Email Supplier</label>
-                        <input type="text" class="form-control" name="emailSupplier">
+                        <label for="email">Email Supplier</label>
+                        <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
+                        @error('email')
+                            <div        class="invalid-feedback">
+                            {{$message}}
+                            </div>
+                        @enderror
                     </div>
                     <div class="col-12">
-                        <label for="teleponSupplier">Telepon Supplier</label>
-                        <input type="text" class="form-control" name="teleponSupplier">
+                        <label for="telepon">Telepon Supplier</label>
+                        <input type="text" class="form-control @error('telepon') is-invalid @enderror" name="telepon" value="{{ old('telepon') }}">
+                        @error('telepon')
+                            <div        class="invalid-feedback">
+                            {{$message}}
+                            </div>
+                        @enderror
                     </div>
                     <div class="col-12">
-                        <label for="lokasiSupplier">Alamat Supplier</label>
-                        <input type="text" class="form-control" name="lokasiSupplier">
+                        <label for="alamat">Alamat Supplier</label>
+                        <input type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{ old('alamat') }}">
+                        @error('alamat')
+                            <div        class="invalid-feedback">
+                            {{$message}}
+                            </div>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -86,6 +106,13 @@
       </div>
     </div>
   </div>
+
+@if(count($errors) > 0)
+  <script>
+    var myModal = new bootstrap.Modal(document.getElementById('modalTambahSupplier'));
+    myModal.show();
+  </script>
+@endif
 
 <script src="js/supplier/list.js" type="text/javascript"></script>
 
