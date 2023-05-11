@@ -2,6 +2,14 @@
 
 @section('container')
 
+@if(session()->has('success'))
+<div class="col-xl-12 col-lg-12 col-sm-12">
+  <div class="alert alert-success" role="alert">
+    {{session('success')}}
+  </div>
+</div>
+@endif
+
 <div class="col-xl-12 col-lg-12 col-sm-12">
     <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->

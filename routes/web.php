@@ -42,11 +42,11 @@ Route::resource('/supplier/tambah', SupplierController::class)->middleware('auth
 
 // Kategori
 Route::get('/listKategori', [KategoriController::class, 'index'])->middleware('auth');
-Route::resource('/kategori/tambah', KategoriController::class)->middleware('auth');
+Route::resource('/kategori', KategoriController::class)->middleware('auth');
 
 // Satuan
 Route::get('/listSatuan', [SatuanController::class, 'index'])->middleware('auth');
-Route::resource('/satuan/tambah', SatuanController::class)->middleware('auth');
+Route::resource('/satuan', SatuanController::class)->middleware('auth');
 
 // Input barang masuk
 Route::get('/inputMasuk', [TransaksiMasukController::class, 'index'])->middleware('auth');

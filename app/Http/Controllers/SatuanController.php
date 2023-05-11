@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Satuan;
 use Illuminate\Http\Request;
 
 class SatuanController extends Controller
@@ -13,7 +14,9 @@ class SatuanController extends Controller
      */
     public function index()
     {
-        return view('satuan/list');
+        return view('satuan/list', [
+            'lists' => Satuan::all()
+        ]);
     }
 
     /**
@@ -37,6 +40,10 @@ class SatuanController extends Controller
         $credentials = $request->validate([
             'nama_satuan' => 'required|unique:satuans|min:3|max:255'
         ]);
+
+        Satuan::create($credentials);
+
+        return redirect('/listSatuan')->with('success', 'New data has been created');
     }
 
     /**
@@ -70,7 +77,19 @@ class SatuanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $satuan = Satuan::find($id);
+
+        $rules = [];
+
+        if ($request->nama_satuan != $satuan->nama_satuan) {
+            $rules['nama_satuan'] = 'required|unique:satuans|min:3|max:255';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        Satuan::where('id', $satuan->id)->update($validatedData);
+
+        return redirect('/listSatuan')->with('success', 'Data updated');
     }
 
     /**
@@ -81,6 +100,8 @@ class SatuanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Satuan::destroy($id);
+
+        return redirect('/listSatuan')->with('success', 'Data deleted');
     }
 }
