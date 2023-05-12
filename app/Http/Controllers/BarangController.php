@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
+use App\Models\Satuan;
+use App\Models\Barang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BarangController extends Controller
 {
@@ -13,7 +17,11 @@ class BarangController extends Controller
      */
     public function index()
     {
-        return view('barang/list');
+        return view('barang/list', [
+            'kategoris' => Kategori::all(),
+            'satuans' => Satuan::all(),
+            'barangs' => Barang::all()
+        ]);
     }
 
     /**
@@ -34,7 +42,31 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $rules = [
+            'nama_barang' => 'required|unique:barangs|min:3|max:255',
+            'kategori_id' => 'required',
+            'merk' => 'required|min:3|max:255',
+            'stok' => 'required|numeric',
+            'satuan_id' => 'required',
+            'lokasi' => 'required|min:3|max:255'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect('/listBarang')
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Ada error di data yang mau kamu buat');
+        }
+
+        $validated = $validator->validated();
+
+        Barang::create($validated);
+
+        return redirect('/listBarang')->with('success', 'Data baru berhasil ditambahkan');
+
+        // return $request;
     }
 
     /**
@@ -68,7 +100,34 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $barang = Barang::find($id);
+
+        $rules = [
+            'kategori_id' => 'required',
+            'merk' => 'required|min:3|max:255',
+            'stok' => 'required|numeric',
+            'satuan_id' => 'required',
+            'lokasi' => 'required|min:3|max:255'
+        ];
+
+        if ($request->nama_barang != $barang->nama_barang) {
+            $rules['nama_barang'] = 'required|unique:barangs|min:3|max:255';
+        }
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect('/listBarang')
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Ada error di data yang mau kamu edit');
+        }
+
+        $validated = $validator->validated();
+
+        Barang::where('id', $barang->id)->update($validated);
+
+        return redirect('/listBarang')->with('success', 'Data berhasil diupdate');
     }
 
     /**
@@ -79,6 +138,8 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Barang::destroy($id);
+
+        return redirect('/listBarang')->with('success', 'Data berhasil dihapus');
     }
 }

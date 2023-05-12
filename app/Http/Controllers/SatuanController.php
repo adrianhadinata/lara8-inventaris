@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Satuan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SatuanController extends Controller
 {
@@ -37,13 +38,22 @@ class SatuanController extends Controller
      */
     public function store(Request $request)
     {
-        $credentials = $request->validate([
-            'nama_satuan' => 'required|unique:satuans|min:3|max:255'
-        ]);
+        $rules = [];
+        $rules['nama_satuan'] = 'required|unique:satuans|min:3|max:255';
+        $validator = Validator::make($request->all(), $rules);
 
-        Satuan::create($credentials);
+        if ($validator->fails()) {
+            return redirect('/listSatuan')
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Ada error di data yang mau kamu buat');
+        }
 
-        return redirect('/listSatuan')->with('success', 'New data has been created');
+        $validated = $validator->validated();
+
+        Satuan::create($validated);
+
+        return redirect('/listSatuan')->with('success', 'Data baru berhasil ditambahkan');
     }
 
     /**
@@ -85,11 +95,19 @@ class SatuanController extends Controller
             $rules['nama_satuan'] = 'required|unique:satuans|min:3|max:255';
         }
 
-        $validatedData = $request->validate($rules);
+        $validator = Validator::make($request->all(), $rules);
 
-        Satuan::where('id', $satuan->id)->update($validatedData);
+        if ($validator->fails()) {
+            return redirect('/listSatuan')
+                ->withErrors($validator)
+                ->with('error', 'Ada error di data yang mau kamu edit');
+        }
 
-        return redirect('/listSatuan')->with('success', 'Data updated');
+        $validated = $validator->validated();
+
+        Satuan::where('id', $satuan->id)->update($validated);
+
+        return redirect('/listSatuan')->with('success', 'Data berhasil diupdate');
     }
 
     /**
@@ -102,6 +120,6 @@ class SatuanController extends Controller
     {
         Satuan::destroy($id);
 
-        return redirect('/listSatuan')->with('success', 'Data deleted');
+        return redirect('/listSatuan')->with('success', 'Data berhasil dihapus');
     }
 }

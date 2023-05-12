@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SupplierController extends Controller
 {
@@ -13,7 +15,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return view('supplier/list');
+        return view('supplier/list', [
+            'lists' => Supplier::all()
+        ]);
     }
 
     /**
@@ -34,12 +38,27 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        $credentials = $request->validate([
+        $rules = [
             'nama_supplier' => 'required|unique:suppliers|min:3|max:255',
-            'email' => 'required|email:rfc,dns',
-            'telepon' => 'required|min:9|max:15',
-            'alamat' => 'required',
-        ]);
+            'email' => 'required|unique:suppliers|min:3|max:255|email',
+            'telepon' => 'required|min:8|max:255',
+            'alamat' => 'required|min:3|max:255'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect('/listSupplier')
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Ada error di data yang mau kamu buat');
+        }
+
+        $validated = $validator->validated();
+
+        Supplier::create($validated);
+
+        return redirect('/listSupplier')->with('success', 'Data baru berhasil ditambahkan');
     }
 
     /**
@@ -73,7 +92,32 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $supplier = Supplier::find($id);
+
+        $rules = [];
+
+        if ($request->nama_supplier != $supplier->nama_supplier) {
+            $rules['nama_supplier'] = 'required|unique:suppliers|min:3|max:255';
+        }
+
+        if ($request->email != $supplier->email) {
+            $rules['email'] = 'required|unique:suppliers|min:3|max:255|email';
+        }
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect('/listSupplier')
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Ada error di data yang mau kamu edit');
+        }
+
+        $validated = $validator->validated();
+
+        Supplier::where('id', $supplier->id)->update($validated);
+
+        return redirect('/listSupplier')->with('success', 'Data berhasil diupdate');
     }
 
     /**
@@ -84,6 +128,8 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Supplier::destroy($id);
+
+        return redirect('/listSupplier')->with('success', 'Data deleted');
     }
 }

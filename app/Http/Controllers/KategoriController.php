@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class KategoriController extends Controller
 {
@@ -16,13 +17,23 @@ class KategoriController extends Controller
 
     public function store(Request $request)
     {
-        $credentials = $request->validate([
+        $rules = [
             'nama_kategori' => 'required|unique:kategoris|min:3|max:255'
-        ]);
+        ];
+        $validator = Validator::make($request->all(), $rules);
 
-        Kategori::create($credentials);
+        if ($validator->fails()) {
+            return redirect('/listKategori')
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Ada error di data yang mau kamu buat');
+        }
 
-        return redirect('/listKategori')->with('success', 'New data has been created');
+        $validated = $validator->validated();
+
+        Kategori::create($validated);
+
+        return redirect('/listKategori')->with('success', 'Data baru berhasil ditambahkan');
     }
 
     /**
@@ -39,14 +50,23 @@ class KategoriController extends Controller
         $rules = [];
 
         if ($request->nama_kategori != $kategori->nama_kategori) {
-            $rules['nama_satuan'] = 'required|unique:satuans|min:3|max:255';
+            $rules['nama_kategori'] = 'required|unique:kategoris|min:3|max:255';
         }
 
-        $validatedData = $request->validate($rules);
+        $validator = Validator::make($request->all(), $rules);
 
-        Kategori::where('id', $kategori->id)->update($validatedData);
+        if ($validator->fails()) {
+            return redirect('/listKategori')
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Ada error di data yang mau kamu edit');
+        }
 
-        return redirect('/listKategori')->with('success', 'Data updated');
+        $validated = $validator->validated();
+
+        Kategori::where('id', $kategori->id)->update($validated);
+
+        return redirect('/listKategori')->with('success', 'Data berhasil diupdate');
     }
 
     /**
@@ -57,7 +77,7 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        Satuan::destroy($id);
+        Kategori::destroy($id);
 
         return redirect('/listKategori')->with('success', 'Data deleted');
     }

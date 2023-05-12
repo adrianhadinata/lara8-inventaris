@@ -10,6 +10,14 @@
 </div>
 @endif
 
+@if(session()->has('error'))
+<div class="col-xl-12 col-lg-12 col-sm-12">
+  <div class="alert alert-danger" role="alert">
+    {{session('error')}}
+  </div>
+</div>
+@endif
+
 <div class="col-xl-12 col-lg-12 col-sm-12">
     <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
@@ -125,13 +133,6 @@
   </div>
 </div>
 </div>
-
-@if(count($errors) > 0)
-  <script>
-    let myModal = new bootstrap.Modal(document.getElementById('modalTambahSatuan'));
-    myModal.show();
-  </script>
-@endif
 
 <script>
   let buttonEdits = document.getElementsByClassName("buttonEdit");

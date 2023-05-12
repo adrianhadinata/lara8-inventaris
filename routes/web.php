@@ -34,11 +34,11 @@ Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
 
 // Barang
 Route::get('/listBarang', [BarangController::class, 'index'])->middleware('auth');
-Route::resource('/barang/tambah', BarangController::class)->middleware('auth');
+Route::resource('/barang', BarangController::class)->middleware('auth');
 
 // Supplier
 Route::get('/listSupplier', [SupplierController::class, 'index'])->middleware('auth');
-Route::resource('/supplier/tambah', SupplierController::class)->middleware('auth');
+Route::resource('/supplier', SupplierController::class)->middleware('auth');
 
 // Kategori
 Route::get('/listKategori', [KategoriController::class, 'index'])->middleware('auth');
