@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
+use App\Models\Supplier;
+use App\Models\Transaksi_masuk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TransaksiMasukController extends Controller
 {
@@ -13,7 +17,10 @@ class TransaksiMasukController extends Controller
      */
     public function index()
     {
-        return view('transaksi/masuk/input');
+        return view('transaksi/masuk/input', [
+            'barangs' => Barang::all(),
+            'suppliers' => Supplier::all()
+        ]);
     }
 
     /**
@@ -34,7 +41,31 @@ class TransaksiMasukController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $rules = [
+            'kode_transaksi' => 'required|unique:transaksi_masuks|min:3|max:255',
+            'supplier_id' => 'required',
+            'barang_id' => 'required',
+            'tanggal_masuk' => 'required',
+            'jumlah_barang' => 'required|numeric|min:1',
+            'catatan' => 'required|min:3|max:255',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect('/inputMasuk')
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Ada error di data yang mau kamu buat');
+        }
+
+        $validated = $validator->validated();
+
+        Transaksi_masuk::create($validated);
+
+        return redirect('/inputMasuk')->with('success', 'Data baru berhasil ditambahkan');
+
+        // return $request;
     }
 
     /**

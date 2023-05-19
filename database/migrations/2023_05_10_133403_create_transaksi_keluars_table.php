@@ -18,8 +18,8 @@ class CreateTransaksiKeluarsTable extends Migration
             $table->string('kode_transaksi');
             $table->foreignId('supplier_id');
             $table->foreignId('barang_id');
-            $table->string('tanggal_masuk');
-            $table->string('jumlah_keluar');
+            $table->string('tanggal_keluar');
+            $table->string('jumlah_barang');
             $table->string('catatan');
         });
     }

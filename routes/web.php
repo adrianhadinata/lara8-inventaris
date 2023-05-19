@@ -50,11 +50,11 @@ Route::resource('/satuan', SatuanController::class)->middleware('auth');
 
 // Input barang masuk
 Route::get('/inputMasuk', [TransaksiMasukController::class, 'index'])->middleware('auth');
-Route::resource('/barang/masuk/tambah', TransaksiMasukController::class)->middleware('auth');
+Route::resource('/barang/masuk', TransaksiMasukController::class)->middleware('auth');
 
 // Input barang keluar
 Route::get('/inputKeluar', [TransaksiKeluarController::class, 'index'])->middleware('auth');
-Route::resource('/barang/keluar/tambah', TransaksiKeluarController::class)->middleware('auth');
+Route::resource('/barang/keluar', TransaksiKeluarController::class)->middleware('auth');
 
 // Laporan barang masuk
 Route::get('/reportMasuk', [LaporanMasukController::class, 'index'])->middleware('auth');
