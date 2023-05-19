@@ -16,7 +16,7 @@ class CreateTransaksiKeluarsTable extends Migration
         Schema::create('transaksi_keluars', function (Blueprint $table) {
             $table->id();
             $table->string('kode_transaksi');
-            $table->foreignId('supplier_id');
+            $table->string('nama_penerima');
             $table->foreignId('barang_id');
             $table->string('tanggal_keluar');
             $table->string('jumlah_barang');

@@ -23,7 +23,32 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        <?php $no = 0; ?>
+                        @foreach($transaksi_masuks as $transaksi_masuk)
+                        <?php $no++ ?>
+                        <tr>
+                            <td>{{ $no }}</td>
+                            <td>{{ $transaksi_masuk->supplier->nama_supplier }}</td>
+                            <td>{{ $transaksi_masuk->barang->nama_barang }}</td>
+                            <td>{{ $transaksi_masuk->tanggal_masuk }}</td>
+                            <td>{{ $transaksi_masuk->jumlah_barang }}</td>
+                            <td>{{ $transaksi_masuk->catatan }}</td>
+                            <td>
+                                <button type="button" data-target="#modalEditLaporan" data-toggle="modal" class="btn btn-primary buttonEdit">
+                                    Edit
+                                </button>
+                                <form action="masuk/{{ $transaksi_masuk->id }}" method="POST" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" onclick="return confirm('kamu yakin?')" class="btn btn-danger">
+                                    Hapus
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>

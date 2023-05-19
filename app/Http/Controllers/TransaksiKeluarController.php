@@ -23,6 +23,15 @@ class TransaksiKeluarController extends Controller
         ]);
     }
 
+    public function transOut()
+    {
+        return view('laporan/keluar/report', [
+            'barangs' => Barang::all(),
+            'suppliers' => Supplier::all(),
+            'transaksi_keluars' => Transaksi_keluar::all()
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -43,7 +52,7 @@ class TransaksiKeluarController extends Controller
     {
         $rules = [
             'kode_transaksi' => 'required|unique:transaksi_keluars|min:3|max:255',
-            'supplier_id' => 'required',
+            'nama_penerima' => 'required|min:3|max:255',
             'barang_id' => 'required',
             'tanggal_keluar' => 'required',
             'jumlah_barang' => 'required|numeric|min:1',

@@ -53,18 +53,9 @@
                         <input type="text" id="kode_transaksi" name="kode_transaksi" class="form-control" readonly>
                     </div>
                     <div class="col-12 mt-2">
-                        <label for="supplier_id">Nama Supplier</label>
-                        <select name="supplier_id" id="supplier_id" class="form-control  @error('supplier_id') is-invalid @enderror">
-                            <option value="">Pilih supplier</option>
-                            @foreach ($suppliers as $supplier)
-                                @if ( old('supplier_id') == $supplier->id)
-                                    <option value="{{ $supplier->id }}" selected>{{ $supplier->nama_supplier }}</option>
-                                @else 
-                                    <option value="{{ $supplier->id }}">{{ $supplier->nama_supplier }}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                        @error('supplier_id')
+                        <label for="nama_penerima">Nama Penerima</label>
+                        <input type="text" name="nama_penerima" id="nama_penerima" class="form-control  @error('nama_penerima') is-invalid @enderror" value="{{ old('nama_penerima')}}" placeholder="Nama penerima...">
+                        @error('nama_penerima')
                             <div class="invalid-feedback">
                             {{$message}}
                             </div>
@@ -144,7 +135,7 @@
 </div>
 
 <script>
-    const date = new Date(), noTransaksi = 'TRANSIN' + date.getDate() + date.getMonth() + date.getFullYear() + date.getHours() + date.getMinutes();
+    const date = new Date(), noTransaksi = 'TRANSOUT' + date.getDate() + date.getMonth() + date.getFullYear() + date.getHours() + date.getMinutes();
     
     document.getElementById('kode_transaksi').value = noTransaksi;
     document.getElementById('divNoTransaksi').innerHTML = noTransaksi;

@@ -15,7 +15,7 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Supplier</th>
+                            <th>Nama Penerima</th>
                             <th>Barang</th>
                             <th>Tanggal Keluar</th>
                             <th>Jumlah Barang</th>
@@ -23,7 +23,32 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        <?php $no = 0; ?>
+                            @foreach($transaksi_keluars as $transaksi_keluar)
+                            <?php $no++ ?>
+                            <tr>
+                                <td>{{ $no }}</td>
+                                <td>{{ $transaksi_keluar->nama_penerima }}</td>
+                                <td>{{ $transaksi_keluar->barang->nama_barang }}</td>
+                                <td>{{ $transaksi_keluar->tanggal_keluar }}</td>
+                                <td>{{ $transaksi_keluar->jumlah_barang }}</td>
+                                <td>{{ $transaksi_keluar->catatan }}</td>
+                                <td>
+                                    <button type="button" data-target="#modalEditLaporan" data-toggle="modal" class="btn btn-primary buttonEdit">
+                                        Edit
+                                    </button>
+                                    <form action="keluar/{{ $transaksi_keluar->id }}" method="POST" class="d-inline">
+                                        @method('delete')
+                                        @csrf
+                                        <button type="submit" onclick="return confirm('kamu yakin?')" class="btn btn-danger">
+                                        Hapus
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>

@@ -23,6 +23,15 @@ class TransaksiMasukController extends Controller
         ]);
     }
 
+    public function transIn()
+    {
+        return view('laporan/masuk/report', [
+            'barangs' => Barang::all(),
+            'suppliers' => Supplier::all(),
+            'transaksi_masuks' => Transaksi_masuk::all()
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
