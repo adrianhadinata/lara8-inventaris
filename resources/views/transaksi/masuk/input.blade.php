@@ -108,7 +108,7 @@
                     </div>
                     <div class="col-4 mt-2">
                         <label for="stokBarang">Stok Barang</label>
-                        <select id="stokBarang" class="form-control">
+                        <select id="stokBarang" class="form-control" disabled>
                             <option value="">0</option>
                             @foreach ($barangs as $barang)
                                 @if ( old('barang_id') == $barang->id)

@@ -108,7 +108,34 @@ class TransaksiKeluarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $transaksi_keluar = Transaksi_keluar::find($id);
+
+        $rules = [
+            'nama_penerima' => 'required',
+            'barang_id' => 'required',
+            'tanggal_keluar' => 'required',
+            'jumlah_barang' => 'required|numeric|min:1',
+            'catatan' => 'required|min:3|max:255',
+        ];
+
+        if ($request->kode_transaksi != $transaksi_keluar->kode_transaksi) {
+            $rules['kode_transaksi'] = 'required|unique:transaksi_keluars|min:3|max:255';
+        }
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect('/reportKeluar')
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Ada error di data yang mau kamu edit');
+        }
+
+        $validated = $validator->validated();
+
+        Transaksi_keluar::where('id', $transaksi_keluar->id)->update($validated);
+
+        return redirect('/reportKeluar')->with('success', 'Data berhasil diupdate');
     }
 
     /**
@@ -119,6 +146,8 @@ class TransaksiKeluarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Transaksi_keluar::destroy($id);
+
+        return redirect('/reportKeluar')->with('success', 'Data berhasil dihapus');
     }
 }

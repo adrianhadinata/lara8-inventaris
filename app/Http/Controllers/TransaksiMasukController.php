@@ -108,7 +108,34 @@ class TransaksiMasukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $transaksi_masuk = Transaksi_masuk::find($id);
+
+        $rules = [
+            'supplier_id' => 'required',
+            'barang_id' => 'required',
+            'tanggal_masuk' => 'required',
+            'jumlah_barang' => 'required|numeric|min:1',
+            'catatan' => 'required|min:3|max:255',
+        ];
+
+        if ($request->kode_transaksi != $transaksi_masuk->kode_transaksi) {
+            $rules['kode_transaksi'] = 'required|unique:transaksi_masuks|min:3|max:255';
+        }
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect('/reportMasuk')
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Ada error di data yang mau kamu edit');
+        }
+
+        $validated = $validator->validated();
+
+        Transaksi_masuk::where('id', $transaksi_masuk->id)->update($validated);
+
+        return redirect('/reportMasuk')->with('success', 'Data berhasil diupdate');
     }
 
     /**
@@ -119,6 +146,8 @@ class TransaksiMasukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Transaksi_masuk::destroy($id);
+
+        return redirect('/reportMasuk')->with('success', 'Data berhasil dihapus');
     }
 }

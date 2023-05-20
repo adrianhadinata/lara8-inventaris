@@ -303,7 +303,7 @@
         let dataSatuan = tableCell[9].textContent.trim();
         let dataLokasi = tableCell[11].textContent.trim();
         let action = 'barang/' + dataId;
-        console.log(dataSatuan)
+        
         formUpdate.action = action;
         inputNama.value = dataNama;
         inputMerk.value = dataMerk;
@@ -329,6 +329,7 @@
             }
         }      
       }
+      
       for (var i = 0; i < buttonEdits.length; i++) {
         buttonEdits[i].addEventListener('click', data, false);
       } 
