@@ -34,6 +34,7 @@ Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
 
 // Barang
 Route::get('/listBarang', [BarangController::class, 'index'])->middleware('auth');
+Route::get('/getOneBarang/{id}', [BarangController::class, 'getById'])->middleware('auth');
 Route::resource('/barang', BarangController::class)->middleware('auth');
 
 // Supplier

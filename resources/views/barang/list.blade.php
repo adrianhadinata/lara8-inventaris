@@ -49,6 +49,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>Kode QR</th>
                             <th>Nama</th>
                             <th>Kategori</th>
                             <th>Merek</th>
@@ -61,6 +62,9 @@
                     <tbody>
                         @foreach($barangs as $barang)
                             <tr>
+                                <td class="text-center">
+                                    <img id='barcode' src="https://api.qrserver.com/v1/create-qr-code/?data={{ $barang->id }}&amp;size=150x150" alt="" title="{{ $barang->nama_barang }}" width="100" height="100" />
+                                </td>
                                 <td>
                                     <input type="hidden" value="{{ $barang->id }}">
                                     {{ $barang->nama_barang }}

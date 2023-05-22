@@ -188,9 +188,6 @@
                 <script src="vendor/datatables/buttons.print.min.js"></script>
                 <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
                 
-
-
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     @yield('container')

@@ -9,7 +9,8 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xl font-weight-bold text-success text-uppercase mb-1">
-                            Selamat Datang, Admin</div>
+                            Selamat Datang, {{auth()->user()->name}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -114,16 +115,16 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                        <label for="">Nama Barang:</label>
-                        <p id="penampungNama">ABC</p>
+                        <label>Nama Barang:</label>
+                        <p id="penampungNama"></p>
                     </div>
                     <div class="col-12">
-                        <label for="">Stok Barang:</label>
-                        <p id="penampungStok">0</p>
+                        <label>Stok Barang:</label>
+                        <p id="penampungStok"></p>
                     </div>
                     <div class="col-12">
-                        <label for="">Lokasi Barang:</label>
-                        <p id="penampungLokasi">Gudang</p>
+                        <label>Lokasi Barang:</label>
+                        <p id="penampungLokasi"></p>
                     </div>
                 </div>
             </div>
@@ -133,9 +134,27 @@
 
 <script src="js/html5-qrcode.min.js" type="text/javascript"></script>
 <script>
+    let namaBarang = document.getElementById('penampungNama');
+    let stokBarang = document.getElementById('penampungStok');
+    let lokasiBrang = document.getElementById('penampungLokasi');
+
     function onScanSuccess(decodedText, decodedResult) {
         // Handle on success condition with the decoded text or result.
-        console.log(`Scan result: ${decodedText}`, decodedResult);
+        id_barang = decodedText
+        
+        $.ajax({
+            url: 'getOneBarang/{id}',
+            type: "GET",
+            data: {
+                id: id_barang
+            },
+            dataType: "json",
+            success: (data) => {
+                namaBarang.innerHTML = '<strong>' + data.nama_barang + '</strong>';
+                stokBarang.innerHTML = '<strong>' + data.stok + '</strong>';
+                lokasiBrang.innerHTML = '<strong>' + data.lokasi + '</strong>';
+            }
+        })
     }
 
     var html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250 });

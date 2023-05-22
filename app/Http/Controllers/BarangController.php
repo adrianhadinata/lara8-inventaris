@@ -130,6 +130,14 @@ class BarangController extends Controller
         return redirect('/listBarang')->with('success', 'Data berhasil diupdate');
     }
 
+    public function getById()
+    {
+        $id = $_GET['id'];
+        $barang = Barang::find($id);
+
+        return response()->json($barang);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
