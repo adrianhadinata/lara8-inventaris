@@ -34,10 +34,10 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon">
+                    <img src="img/gubug.png" width="100px">
                 </div>
-                <div class="sidebar-brand-text mx-3">Inventaris</div>
+                {{-- <div class="sidebar-brand-text">Inventaris</div> --}}
             </a>
 
             <!-- Divider -->
@@ -91,22 +91,24 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#reportCollapse"
-                  aria-expanded="true" aria-controls="reportCollapse">
-                  <i class="fas fa-fw fa-chart-area"></i>
-                  <span>Report</span>
-              </a>
-              <div id="reportCollapse" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                  <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/reportMasuk">Barang Masuk</a>
-                    <a class="collapse-item" href="/reportKeluar">Barang Keluar</a>
-                  </div>
-              </div>
-            </li>
+            @if (auth()->user()->role == 1)
+                <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#reportCollapse"
+                    aria-expanded="true" aria-controls="reportCollapse">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Report</span>
+                </a>
+                <div id="reportCollapse" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/reportMasuk">Barang Masuk</a>
+                        <a class="collapse-item" href="/reportKeluar">Barang Keluar</a>
+                    </div>
+                </div>
+                </li>
+            @endif
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#userCollapse"
                   aria-expanded="true" aria-controls="userCollapse">
                   <i class="fas fa-user-cog"></i>
@@ -117,7 +119,7 @@
                     <a class="collapse-item" href="listUser">User</a>
                   </div>
               </div>
-            </li>
+            </li> --}}
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

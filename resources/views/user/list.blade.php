@@ -2,6 +2,22 @@
 
 @section('container')
 
+@if(session()->has('success'))
+<div class="col-xl-12 col-lg-12 col-sm-12">
+  <div class="alert alert-success" role="alert">
+    {{session('success')}}
+  </div>
+</div>
+@endif
+
+@if(session()->has('error'))
+<div class="col-xl-12 col-lg-12 col-sm-12">
+  <div class="alert alert-danger" role="alert">
+    {{session('error')}}
+  </div>
+</div>
+@endif
+
 <div class="col-xl-12 col-lg-12 col-sm-12">
     <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
@@ -16,12 +32,48 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Email</th>
                             <th>Nama</th>
                             <th>Username</th>
+                            <th>Role</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+
+                      @foreach ($lists as $list)
+                          <tr>
+                            <td class="text-center">
+                              <input type="hidden" value="{{ $list->id }}">
+                              {{  }}
+                            </td>
+                            <td class="text-center">
+                              {{ $list->email }}
+                            </td>
+                            <td class="text-center">
+                              {{ $list->name }}
+                            </td>
+                            <td class="text-center">
+                              {{ $list->username }}
+                            </td>
+                            <td class="text-center">
+                              {{ $list->role }}
+                            </td>
+                            <td class="text-center">
+                              <button type="button" data-target="#modalEditSupplier" data-toggle="modal" class="btn btn-primary buttonEdit">
+                                Edit
+                              </button>
+                              <form action="supplier/{{ $list->id }}" method="POST" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" onclick="return confirm('kamu yakin?')" class="btn btn-danger">
+                                  Hapus
+                                </button>
+                              </form>
+                            </td>
+                          </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -42,10 +94,6 @@
           @csrf
           <div class="modal-body">
             <div class="row">
-              <div class="col-12">
-                  <label for="kodeQR">Kode QR:</label>
-                  <input type="text" class="form-control" name="kodeQR">
-              </div>
               <div class="col-12">
                   <label for="namaUser">Nama User</label>
                   <input type="text" class="form-control" name="namaUser">
