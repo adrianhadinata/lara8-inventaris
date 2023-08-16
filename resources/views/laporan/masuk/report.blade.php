@@ -47,14 +47,14 @@
                             <td>
                                 <input type="hidden" value="{{ $transaksi_masuk->id }}">
                                 <input type="hidden" value="{{ $transaksi_masuk->kode_transaksi }}">
-                                <input type="hidden" value="{{ $transaksi_masuk->barang->stok }}">
+                                <input type="hidden" value="{{ optional($transaksi_masuk->barang)->stok }}">
                                 {{ $no }}
                             </td>
                             <td>
                                 <input type="hidden" value="{{ $transaksi_masuk->supplier_id }}">
                                 {{ $transaksi_masuk->supplier->nama_supplier }}
                             </td>
-                            <td>{{ $transaksi_masuk->barang->nama_barang }}</td>
+                            <td>{{ optional($transaksi_masuk->barang)->nama_barang }}</td>
                             <td>{{ $transaksi_masuk->tanggal_masuk }}</td>
                             <td>{{ $transaksi_masuk->jumlah_barang }}</td>
                             <td>{{ $transaksi_masuk->catatan }}</td>
@@ -194,6 +194,7 @@
     </div>
 </div>
 
+<!-- Script untuk edit -->
 <script>
     let buttonEdits = document.getElementsByClassName("buttonEdit");
     document.getElementById('barang_id').onchange = function(){

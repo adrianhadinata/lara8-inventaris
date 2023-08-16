@@ -26,7 +26,7 @@
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                         Total Barang
                     </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ count($barangs) }}</div>
                 </div>
                 <div class="col-auto">
                     <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -299,13 +299,13 @@
         let inputLokasi = document.getElementById('lokasi');
         let tableRow = e.target.parentElement.parentElement;
         let tableCell = tableRow.childNodes;
-        let dataId = tableCell[1].children[0].value;
-        let dataNama = tableCell[1].textContent.trim();
+        let dataId = tableCell[3].children[0].value;
+        let dataNama = tableCell[3].textContent.trim();
         let dataKategori = tableCell[3].textContent.trim();
-        let dataMerk = tableCell[5].textContent.trim();
-        let dataJumlah = tableCell[7].textContent.trim();
-        let dataSatuan = tableCell[9].textContent.trim();
-        let dataLokasi = tableCell[11].textContent.trim();
+        let dataMerk = tableCell[7].textContent.trim();
+        let dataJumlah = tableCell[9].textContent.trim();
+        let dataSatuan = tableCell[11].textContent.trim();
+        let dataLokasi = tableCell[13].textContent.trim();
         let action = 'barang/' + dataId;
         
         formUpdate.action = action;
@@ -316,7 +316,7 @@
 
         for (var i=0; i<inputSatuan.options.length; i++) {
             option = inputSatuan.options[i];
-            console.log(option)
+            
             if (option.text == dataSatuan) {
                 option.setAttribute('selected', true);
             } else {

@@ -27,7 +27,6 @@ class TransaksiKeluarController extends Controller
     {
         return view('laporan/keluar/report', [
             'barangs' => Barang::all(),
-            'suppliers' => Supplier::all(),
             'transaksi_keluars' => Transaksi_keluar::all()
         ]);
     }

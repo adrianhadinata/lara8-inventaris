@@ -21,4 +21,14 @@ class Barang extends Model
     {
         return $this->belongsTo(Satuan::class);
     }
+
+    public function transaksi_masuk()
+    {
+        return $this->hasMany(Transaksi_masuk::class);
+    }
+
+    public function transaksi_keluar()
+    {
+        return $this->hasMany(Transaksi_masuk::class);
+    }
 }

@@ -14,11 +14,6 @@ class Transaksi_keluar extends Model
 
     public function barang()
     {
-        return $this->belongsTo(Barang::class);
-    }
-
-    public function supplier()
-    {
-        return $this->belongsTo(Supplier::class);
+        return $this->belongsTo(Barang::class, "barang_id", "id");
     }
 }

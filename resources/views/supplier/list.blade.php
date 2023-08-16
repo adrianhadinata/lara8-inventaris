@@ -25,7 +25,7 @@
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                         Total Supplier</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ count($lists) }}</div>
                 </div>
                 <div class="col-auto">
                     <i class="fas fa-calendar fa-2x text-gray-300"></i>

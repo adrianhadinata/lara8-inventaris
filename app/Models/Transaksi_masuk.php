@@ -14,11 +14,11 @@ class Transaksi_masuk extends Model
 
     public function barang()
     {
-        return $this->belongsTo(Barang::class);
+        return $this->belongsTo(Barang::class, "barang_id", "id");
     }
 
     public function supplier()
     {
-        return $this->belongsTo(Supplier::class);
+        return $this->belongsTo(Supplier::class, "supplier_id");
     }
 }
