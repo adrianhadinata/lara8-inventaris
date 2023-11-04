@@ -7,6 +7,7 @@ use App\Models\Satuan;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class BarangController extends Controller
 {
@@ -17,10 +18,30 @@ class BarangController extends Controller
      */
     public function index()
     {
+        $barangInStock = DB::select("SELECT
+            barangs.id,
+            barangs.nama_barang,
+            barangs.merk,
+            satuans.nama_satuan,
+            kategoris.nama_kategori,
+            barangs.kategori_id,
+            barangs.satuan_id,
+            barangs.lokasi,
+            (
+	            IFNULL( SUM( transaksi_masuks.jumlah_barang ), 0 ) - IFNULL( SUM( transaksi_keluars.jumlah_barang ), 0 )) stok  
+        FROM
+            barangs
+            LEFT JOIN satuans ON barangs.satuan_id = satuans.id
+            LEFT JOIN kategoris ON barangs.kategori_id = kategoris.id
+            LEFT JOIN transaksi_masuks ON barangs.id = transaksi_masuks.barang_id
+            LEFT JOIN transaksi_keluars ON barangs.id = transaksi_keluars.barang_id 
+        GROUP BY
+            barangs.id");
+ 
         return view('barang/list', [
             'kategoris' => Kategori::all(),
             'satuans' => Satuan::all(),
-            'barangs' => Barang::all()
+            'barangs' => $barangInStock
         ]);
     }
 
@@ -46,7 +67,6 @@ class BarangController extends Controller
             'nama_barang' => 'required|unique:barangs|min:3|max:255',
             'kategori_id' => 'required',
             'merk' => 'required|min:3|max:255',
-            'stok' => 'required|numeric',
             'satuan_id' => 'required',
             'lokasi' => 'required|min:3|max:255'
         ];
@@ -105,7 +125,6 @@ class BarangController extends Controller
         $rules = [
             'kategori_id' => 'required',
             'merk' => 'required|min:3|max:255',
-            'stok' => 'required|numeric',
             'satuan_id' => 'required',
             'lokasi' => 'required|min:3|max:255'
         ];

@@ -19,7 +19,7 @@ class CreateBarangsTable extends Migration
             $table->foreignId('kategori_id');
             $table->string('merk');
             $table->foreignId('satuan_id');
-            $table->string('stok');
+            $table->string('stok')->nullable();
             $table->string('lokasi');
         });
     }

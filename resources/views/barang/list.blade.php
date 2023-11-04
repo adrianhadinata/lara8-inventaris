@@ -46,9 +46,10 @@
         <!-- Card Body -->
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="display nowrap" id="dataTable" style="width: 100%">
                     <thead>
                         <tr>
+                            <th>ID Barang</th>
                             <th>Kode QR</th>
                             <th>Nama</th>
                             <th>Kategori</th>
@@ -62,6 +63,7 @@
                     <tbody>
                         @foreach($barangs as $barang)
                             <tr>
+                                <td class="text-center">{{ $barang->id }}</td>
                                 <td class="text-center">
                                     <img id='barcode' src="https://api.qrserver.com/v1/create-qr-code/?data={{ $barang->id }}&amp;size=150x150" alt="" title="{{ $barang->nama_barang }}" width="100" height="100" />
                                 </td>
@@ -69,10 +71,10 @@
                                     <input type="hidden" value="{{ $barang->id }}">
                                     {{ $barang->nama_barang }}
                                 </td>
-                                <td>{{ $barang->kategori->nama_kategori }}</td>
+                                <td>{{ $barang->nama_kategori }}</td>
                                 <td>{{ $barang->merk }}</td>
-                                <td>{{ $barang->stok }}</td>
-                                <td>{{ $barang->satuan->nama_satuan }}</td>
+                                <td class="text-center">{{ $barang->stok }}</td>
+                                <td>{{ $barang->nama_satuan }}</td>
                                 <td>{{ $barang->lokasi }}</td>
                                 <td>
                                     <button type="button" data-target="#modalEditBarang" data-toggle="modal" class="btn btn-primary buttonEdit">
@@ -145,15 +147,6 @@
                         @enderror
                   </div>
                   <div class="col-12">
-                        <label for="stok">Jumlah Barang</label>
-                        <input type="text" class="form-control @error('stok') is-invalid @enderror" name="stok" value="{{ old('stok') }}">
-                        @error('stok')
-                            <div class="invalid-feedback">
-                            {{$message}}
-                            </div>
-                        @enderror
-                  </div>
-                  <div class="col-12">
                         <label for="satuan_id">Satuan Barang</label>
                         <select name="satuan_id" class="form-control @error('satuan_id') is-invalid @enderror" id="">
                         @foreach ($satuans as $satuan)
@@ -206,45 +199,36 @@
           <div class="modal-body">
             <div class="row">
                 <div class="col-12">
-                        <label for="nama_barang">Nama Barang</label>
-                        <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" name="nama_barang" value="{{ old('nama_barang') }}" id="nama_barang">
-                        @error('nama_barang')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                        @enderror
+                    <label for="nama_barang">Nama Barang</label>
+                    <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" name="nama_barang" value="{{ old('nama_barang') }}" id="nama_barang">
+                    @error('nama_barang')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
                 </div>
                 <div class="col-6">
-                        <label for="kategori_id" >Kategori Barang</label>
-                        <select class="form-control @error('kategori_id') is-invalid @enderror" name="kategori_id" id="kategori_id">
-                            @foreach ($kategoris as $kategori)
-                                @if ( old('kategori_id') == $kategori->id)
-                                    <option value="{{ $kategori->id }}" selected>{{ $kategori->nama_kategori }}</option>
-                                @else 
-                                    <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                        @error('kategori_id')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                        @enderror
+                    <label for="kategori_id" >Kategori Barang</label>
+                    <select class="form-control @error('kategori_id') is-invalid @enderror" name="kategori_id" id="kategori_id">
+                        @foreach ($kategoris as $kategori)
+                            @if ( old('kategori_id') == $kategori->id)
+                                <option value="{{ $kategori->id }}" selected>{{ $kategori->nama_kategori }}</option>
+                            @else 
+                                <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                    @error('kategori_id')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
                 </div>
                 <div class="col-6">
                     <label for="merk"> Merek Barang</label>
                     <input type="text" class="form-control @error('merk') is-invalid @enderror" name="merk" value="{{ old('merk') }}" id="merk">
                     @error('merk')
                         <div        class="invalid-feedback">
-                          {{$message}}
-                        </div>
-                    @enderror
-                </div>
-                <div class="col-12">
-                    <label for="stok">Jumlah Barang</label>
-                    <input type="text" class="form-control @error('stok') is-invalid @enderror" name="stok" value="{{ old('stok') }}" id="stok">
-                    @error('stok')
-                        <div class="invalid-feedback">
                           {{$message}}
                         </div>
                     @enderror
@@ -294,24 +278,22 @@
         let inputNama = document.getElementById('nama_barang');
         let inputKategori = document.getElementById('kategori_id');
         let inputMerk = document.getElementById('merk');
-        let inputJumlah = document.getElementById('stok');
         let inputSatuan = document.getElementById('satuan_id');
         let inputLokasi = document.getElementById('lokasi');
         let tableRow = e.target.parentElement.parentElement;
         let tableCell = tableRow.childNodes;
-        let dataId = tableCell[3].children[0].value;
-        let dataNama = tableCell[3].textContent.trim();
-        let dataKategori = tableCell[3].textContent.trim();
-        let dataMerk = tableCell[7].textContent.trim();
-        let dataJumlah = tableCell[9].textContent.trim();
-        let dataSatuan = tableCell[11].textContent.trim();
-        let dataLokasi = tableCell[13].textContent.trim();
+        let dataId = tableCell[5].children[0].value;
+        let dataNama = tableCell[5].textContent.trim();
+        let dataKategori = tableCell[7].textContent.trim();
+        let dataMerk = tableCell[9].textContent.trim();
+        let dataStok = tableCell[11].textContent.trim();
+        let dataSatuan = tableCell[13].textContent.trim();
+        let dataLokasi = tableCell[15].textContent.trim();
         let action = 'barang/' + dataId;
         
         formUpdate.action = action;
         inputNama.value = dataNama;
         inputMerk.value = dataMerk;
-        inputJumlah.value = dataJumlah;
         inputLokasi.value = dataLokasi;
 
         for (var i=0; i<inputSatuan.options.length; i++) {

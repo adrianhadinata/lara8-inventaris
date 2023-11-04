@@ -28,7 +28,7 @@
         <!-- Card Body -->
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="display nowrap" id="dataTable" style="width: 100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Nama Kategori</th>

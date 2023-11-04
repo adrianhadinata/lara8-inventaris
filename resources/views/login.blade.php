@@ -30,17 +30,21 @@
         <div class="row justify-content-center">
 
             <div class="col-xl-6 col-lg-6 col-md-6">
-
-                @if(session()->has('loginError'))
-                    <div class="alert alert-danger alert-dismissable fade show" role="alert">
-                        {{ session('loginError') }}
-                    </div>
-                @endif
-
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
+                            <div class="col-lg-12 p-5 text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Inventory System</h2>
+                                @if(session()->has('loginError'))
+                                    <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                                        {{ session('loginError') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endif
+                            </div>
                             <div class="col-lg-12">
                                 <img src="img/38008-box-open-and-close-package-animation.gif" style="width:150px; display: block; margin-left: auto; margin-right: auto;">
                             </div>

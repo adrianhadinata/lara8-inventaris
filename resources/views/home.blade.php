@@ -2,7 +2,7 @@
 
 @section('container')
 
-<div class="row">
+<div class="row" id="welcoming">
     <div class="col-xl-12 col-md-12 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
@@ -159,6 +159,12 @@
 
     var html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250 });
     html5QrcodeScanner.render(onScanSuccess);
+
+    $(document).ready(function(){
+        setTimeout(() => {
+            $("#welcoming").hide("slow");
+        }, 2000);
+    })
 </script>
 
 @endsection

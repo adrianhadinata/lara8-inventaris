@@ -61,7 +61,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col-8 mt-2">
+                    <div class="col-6 mt-2">
                         <label for="barang_id">Nama Barang</label>
                         <select name="barang_id" id="barang_id" class="form-control @error('barang_id') is-invalid @enderror">
                             <option value="">Pilih barang</option>
@@ -88,7 +88,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col-4 mt-2">
+                    <div class="col-2 mt-2">
                         <label for="jumlah_barang">Jumlah Barang</label>
                         <input type="number" value="{{ old('jumlah_barang') ? old('jumlah_barang') : 0 }}" name="jumlah_barang" id="jumlah_barang" placeholder="Masukan jumlah..." class="form-control @error('jumlah_barang') is-invalid @enderror">
                         @error('jumlah_barang')
@@ -96,23 +96,6 @@
                             {{$message}}
                             </div>
                         @enderror
-                    </div>
-                    <div class="col-4 mt-2">
-                        <label for="stokBarang">Stok Barang</label>
-                        <select id="stokBarang" class="form-control">
-                            <option value="">0</option>
-                            @foreach ($barangs as $barang)
-                                @if ( old('barang_id') == $barang->id)
-                                    <option value="{{ $barang->id }}" selected>{{ $barang->stok }}</option>
-                                @else 
-                                    <option value="{{ $barang->id }}">{{ $barang->stok }}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-4 mt-2">
-                        <label for="totalBarang">Total Barang</label>
-                        <input type="text" value="0" id="totalBarang" class="form-control" readonly>
                     </div>
                     <div class="col-12 mt-2">
                         <label for="catatan">Catatan</label>
